@@ -38,7 +38,7 @@ public class NoteController {
     @GetMapping("/edit")
     public ModelAndView editNote(@RequestParam("id") long id) {
         Note note = noteService.getById(id);
-        ModelAndView modelAndView = new ModelAndView("note/edit");
+        ModelAndView modelAndView = new ModelAndView("edit");
         modelAndView.addObject("notes", note);
         return modelAndView;
     }
@@ -48,6 +48,20 @@ public class NoteController {
         noteService.update(note);
         return new ModelAndView("redirect:/note/list");
     }
+    @GetMapping("/create")
+    public ModelAndView createNoteForm() {
+        ModelAndView modelAndView = new ModelAndView("create");
+        modelAndView.addObject("notes", new Note());
+        return modelAndView;
+    }
+
+    @PostMapping("/create")
+    public ModelAndView createNote(@ModelAttribute Note note) {
+        noteService.add(note);
+        return new ModelAndView("redirect:/note/list");
+    }
+
+
 
 }
 
