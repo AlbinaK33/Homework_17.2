@@ -51,7 +51,7 @@ public class NoteController {
     @GetMapping("/create")
     public ModelAndView createNoteForm() {
         ModelAndView modelAndView = new ModelAndView("create");
-        modelAndView.addObject("notes", new Note());
+        modelAndView.addObject("note", new Note());
         return modelAndView;
     }
 
